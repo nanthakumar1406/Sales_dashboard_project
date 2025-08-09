@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualizations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Data Visualizations</h1>
+        
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/visualizations" class="active">Data Visualizations</a>
+            <a href="/models">Predictive Models</a>
+        </div>
+        
+        <div class="content">
+            <div class="plot-container">
+                <h2>Sales Distribution</h2>
+                <img src="data:image/png;base64,{{ plots.sales_dist }}" alt="Sales Distribution">
+            </div>
+            
+            <div class="plot-container">
+                <h2>Profit Distribution</h2>
+                <img src="data:image/png;base64,{{ plots.profit_dist }}" alt="Profit Distribution">
+            </div>
+            
+            <div class="plot-container">
+                <h2>Sales by Category</h2>
+                <img src="data:image/png;base64,{{ plots.sales_category }}" alt="Sales by Category">
+            </div>
+            
+            <div class="plot-container">
+                <h2>Total Sales by Region</h2>
+                <img src="data:image/png;base64,{{ plots.sales_region }}" alt="Total Sales by Region">
+            </div>
+            
+            <div class="plot-container">
+                <h2>Profit vs Sales by Category</h2>
+                <img src="data:image/png;base64,{{ plots.profit_vs_sales }}" alt="Profit vs Sales by Category">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Models</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Predictive Models</h1>
+        
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/visualizations">Data Visualizations</a>
+            <a href="/models" class="active">Predictive Models</a>
+        </div>
+        
+        <div class="content">
+            <h2>Regression Models</h2>
+            
+            <div class="model-section">
+                <h3>Random Forest Regressor</h3>
+                <p><strong>RMSE:</strong> {{ rf_reg_metrics.RMSE|round(2) }}</p>
+                <p><strong>R² Score:</strong> {{ rf_reg_metrics.R2|round(2) }}</p>
+                <img src="data:image/png;base64,{{ rf_reg_plot }}" alt="Random Forest Feature Importance">
+            </div>
+            
+            <div class="model-section">
+                <h3>Decision Tree Regressor</h3>
+                <p><strong>RMSE:</strong> {{ dt_reg_metrics.RMSE|round(2) }}</p>
+                <p><strong>R² Score:</strong> {{ dt_reg_metrics.R2|round(2) }}</p>
+                <img src="data:image/png;base64,{{ dt_tree_plot }}" alt="Decision Tree Visualization">
+                <img src="data:image/png;base64,{{ dt_scatter_plot }}" alt="Actual vs Predicted">
+            </div>
+            
+            <h2>Classification Models</h2>
+            
+            <div class="model-section">
+                <h3>Random Forest Classifier</h3>
+                <p><strong>Accuracy:</strong> {{ (rf_clf_accuracy * 100)|round(2) }}%</p>
+                
+                <h4>Confusion Matrix:</h4>
+                <img src="data:image/png;base64,{{ rf_cm_plot }}" alt="Confusion Matrix">
+                
+                <h4>Classification Report:</h4>
+                <pre>{{ rf_clf_report }}</pre>
+                
+                <h4>Feature Importance:</h4>
+                <img src="data:image/png;base64,{{ rf_feature_plot }}" alt="Feature Importance">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

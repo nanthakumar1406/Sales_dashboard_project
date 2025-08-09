@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperStore Sales Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+   
+</head>
+<body>
+    
+    <div class="container">
+        <h1>SuperStore Sales Analysis</h1>
+
+        <div class="nav">
+            <a href="/" class="active">Home</a>
+            <a href="/visualizations">Data Visualizations</a>
+            <a href="/models">Predictive Models</a>
+        </div>
+
+        <div class="content">
+            <h2>Welcome to the SuperStore Sales Analysis Dashboard</h2>
+            <p>This application provides insights into the SuperStore sales data.</p>
+
+            {% if rows > 0 and cols > 0 %}
+            <h2>Data Overview</h2>
+            <p>The dataset contains <strong>{{ rows }}</strong> rows and <strong>{{ cols }}</strong> columns.</p>
+
+            <h3>Categorical Columns</h3>
+            <table>
+                <tr><th>Column Name</th></tr>
+                {% for col in categorical_columns %}
+                <tr><td>{{ col }}</td></tr>
+                {% endfor %}
+            </table>
+
+            <h3>Numerical Columns</h3>
+            <table>
+                <tr><th>Column Name</th></tr>
+                {% for col in numerical_columns %}
+                <tr><td>{{ col }}</td></tr>
+                {% endfor %}
+            </table>
+
+            <h3>Duplicate Records</h3>
+            <p>{{ duplicate_count }} duplicate rows found.</p>
+
+            <h3>First 5 Rows</h3>
+            {{ df_head | safe }}
+
+            <h3>Summary Statistics</h3>
+            {{ df_summary | safe }}
+
+            <h3>Data Info</h3>
+            <pre>{{ df_info }}</pre>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
